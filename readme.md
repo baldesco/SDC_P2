@@ -12,7 +12,7 @@ The code for this project can be found at the **P2.ipyb** notebook.
 
 The first thing to do is to get the distortion coefficients and the camera matrix for the camera that is recording the images in the car. Having these values will allow us to correct the distortion in the images.
 
-<img src="media/Calibration.png" width="700">
+<img src="media/Calibration.jpg" width="700">
 ___________________________________________________________________________________________________________________________
 
 ## 2. Undistort and threshold images
@@ -23,7 +23,7 @@ In this section, the lane line images are undistorted using the output from sect
 
 Here I transform the undistorted image to the HLS color space, since all 3 channels in this space (hue, lightness and saturation) are useful options for thresholding the image, either by color or by gradients.
 
-<img src="media/hls.png" width="700">
+<img src="media/hls.jpg" width="700">
 
 ### 2.2 Gradient thresholding
 
@@ -31,13 +31,13 @@ Since the lane lines are mostly vertical, a gradient in the x direction is consi
 
 The gradient is applied over the lightness channel, over the HLS color space. I chose this channel (over, for example the 'red' channel or the grayscale image) because it seems to give better results.
 
-<img src="media/x_gradient.png" width="700">
+<img src="media/x_gradient.jpg" width="700">
 
 ### 2.3 Combination of color and gradient thresholding
 
 In order to create a binary mask of the lines, the hue, saturation and x gradient thresholds are combined. Since there are 3 different criteria to detect if there is a line or not, I chose to make a vote, so if at least 2 of the thresholds determine that a pixel in the image contains relevant information, then this pixel is activated in the combined binary mask.
 
-<img src="media/binary_mask.png" width="700">
+<img src="media/binary_mask.jpg" width="700">
 ___________________________________________________________________________________________________________________________
 
 ## 3. Perspective transform
@@ -46,7 +46,7 @@ After a binary image has been created with the help of color and gradient thresh
 
 For doing this, source and destinations image points must be defined. I used the points showed in the file *example_writeup.pdf* as a guide for this, changing the source points location just a little.
 
-<img src="media/warped.png" width="700">
+<img src="media/warped.jpg" width="700">
 ___________________________________________________________________________________________________________________________
 
 ## 4. Line detection
@@ -207,7 +207,7 @@ Everything is ready now to test the pipeline in images and videos.
 
 First, I will use the pipeline on one image. Then, all the test images will be entered to produce the output images.
 
-<img src="media/output.png" width="700">
+<img src="media/output.jpg" width="700">
 
 In 3 of the 8 images the algorithm does not find the lines successfully. Let’s see if this can be improved in the video, with the tracking of past frames.
 
